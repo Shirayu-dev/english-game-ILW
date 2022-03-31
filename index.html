@@ -19,12 +19,12 @@
     <h2 class="text bottom-separation">The question is:</h2>
     <div class="container horizontal-centered">
         <div class="text big-bottom-separation" id="questionZone"></div>
-        <ion-icon class="big-bottom-separation left-separation" style="color: white;height: 50px;width: 50px;" name="volume-high-outline"></ion-icon>
+        <div onclick="replay()" id="repeatButton" class="big-bottom-separation left-separation" style="display: none;"><ion-icon style="color: white;height: 50px;width: 50px;" name="volume-high-outline"></ion-icon></div>
     </div>
-    <input class="bottom-separation" id="answerZone" type="text" placeholder="Type your answer here..." onkeydown="checkingAnswer(true)" disabled oninput="typingSomething(this.value)">
+    <input autocomplete="off" class="bottom-separation" id="answerZone" type="text" placeholder="Type your answer here..." onkeydown="checkingAnswer(true)" disabled oninput="typingSomething(this.value)">
     <input id="checkAnswer" class="big-bottom-separation" type="button" value="Check the answer!" onclick="checkingAnswer(false)" disabled>
     <h2 class="text bottom-separation">The answer is: <span id="responseZone"></span></h2>
-    <p class="text">The correct answer is: <span id="correctAnswer"></span></p>
+    <p class="big-text">The correct answer is: <span class="green" id="correctAnswer"></span></p>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

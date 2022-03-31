@@ -80,6 +80,7 @@ input:disabled {
 
 .big-text {
     font-size: min(20px,5vw);
+    color: rgb(232, 230, 227);
 }
 
 .italic {
@@ -103,13 +104,13 @@ input:disabled {
     margin-right: 25px;
 }
 
-.left-align {
-    float: left;
-};
-
 .left-separation {
     margin-left: 25px;
-};
+}
+
+.left-align {
+    float: left;
+}
 
 .ligne-separation {
     border: solid rgba(232, 230, 227, 0.9);
@@ -221,4 +222,16 @@ input:disabled {
     color: black;
     font-weight: bold;
     background-color: rgb(232, 230, 227);
+}
+
+.green {
+    color: greenyellow;
+}
+
+.red {
+    color: red;
+}
+
+#repeatButton {
+    cursor: pointer;
 }
