@@ -4,18 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Select the type of the question:</h1>
-    <div class="question-type"></div>
-    <div class="question-type"></div>
-    <div class="question-type"></div>
-    <div class="question-type"></div>
-    <div class="question-type"></div>
-    <h2>The question is:</h2>
-    <p id="question"></p>
-    <input type="button" value="Reveal the answer!">
-    <h2>The answer of the question is:</h2>
-    <p id="answer"></p>
+    <div class="container big-bottom-separation">
+        <div id="v" class="question-type right-separation">Vocabulary</div>
+        <div id="o" class="question-type right-separation">Orthograph</div>
+        <div id="e" class="question-type right-separation">Expression</div>
+        <div id="g" class="question-type right-separation">Grammar</div>
+        <div id="b" class="question-type">Bonus</div>
+    </div>
+    <input id="createQuestion" class="big-bottom-separation" type="button" value="Genrerate a question" disabled>
+    <h2 class="text bottom-separation">The question is:</h2>
+    <div class="container horizontal-centered">
+        <div class="text big-bottom-separation" id="questionZone"></div>
+        <ion-icon class="big-bottom-separation left-separation" style="color: white;height: 50px;width: 50px;" name="volume-high-outline"></ion-icon>
+    </div>
+    <input class="bottom-separation" id="answerZone" type="text" placeholder="Type your answer here..." onkeydown="checkingAnswer(true)" disabled oninput="typingSomething(this.value)">
+    <input id="checkAnswer" class="big-bottom-separation" type="button" value="Check the answer!" onclick="checkingAnswer(false)" disabled>
+    <h2 class="text bottom-separation">The answer is: <span id="responseZone"></span></h2>
+    <p class="text">The correct answer is: <span id="correctAnswer"></span></p>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+<script src="script.js"></script>
 </html>
