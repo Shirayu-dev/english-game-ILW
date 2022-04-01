@@ -57,7 +57,7 @@ const checkCorrespondance=(first,second,isAVocabularyWord)=>{
     }
     });
     let difference=Math.abs(correspondance-secondValue.length);
-    return difference<numberOfWord/1.5;
+    return difference<numberOfWord/2;
 }
 
 const map=new Map([["v","Vocabulary"],["o","Orthograph"],["e","Expression"],["g","Grammar"],["b","Bonus"]]);
