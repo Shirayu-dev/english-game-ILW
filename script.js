@@ -57,7 +57,7 @@ const checkCorrespondance=(first,second,isAVocabularyWord)=>{
     }
     });
     let difference=Math.abs(correspondance-secondValue.length);
-    return difference<numberOfWord;
+    return difference<numberOfWord/1.5;
 }
 
 const map=new Map([["v","Vocabulary"],["o","Orthograph"],["e","Expression"],["g","Grammar"],["b","Bonus"]]);
@@ -67,7 +67,7 @@ const vocabularyQuestions=[["(n) Something that has greatest importance; a first
 const orthographQuestions=["Honorificabilitudinitatibus","Pharaoh","Weird","Intelligence","Pronunciation","Misspell","Handkerchief","Logorrhea","Chiaroscurist","Nauseous","Liquefy","Paraphernalia","Onomatopoeia","Acquiesce","Gubernatorial","Mischievous"];
 
 //What is the expression that means:
-const expressionQuestions=[["When it's raining a lot","It’s raining cats and dogs"],["Wish someone luck","Break a leg!"],["Be hesitant","To be sitting on the fence"],["Avoiding a question","To beat around the bush"],["Something very unexpected","Out of the blue"],["Like the sound of a bell","That rings a bell"],["That's all for today","Let’s call it a day"],["Get a grip on yourself","Get your act together"],["Too easy","A piece of cake"],["Like father like son","The apple doesn’t fall far from the tree"],["What's done is done","Don't cry over spilt milk"],["Cost a fortune","To cost an arm and a leg"],["Express the idea that an action or event will never happen","When pigs can fly"]];
+const expressionQuestions=[["When it's raining a lot\n\nIt's raining ... ... ...",["It’s raining cats and dogs","cats and dogs"]],["Wish someone luck\n\n Break a ...!",["Break a leg!","leg"]],["Be hesitant\n\nTo be sitting on the ...",["To be sitting on the fence","fence"]],["Avoiding a question\n\nTo ... around the ...",["To beat around the bush","beat bush"]],["Something very unexpected\n\nOut of the ...",["Out of the blue","blue"]],["Like the sound of a bell\n\nThat rings a ...",["That rings a bell","bell"]],["That's all for today\n\nLet's ... it a ...",["Let’s call it a day","call day"]],["Get a grip on yourself\n\nGet your ... together",["Get your act together","act"]],["Too easy\n\nA ... of ...",["A piece of cake","piece cake"]],["Like father like son\n\nThe ... doesn't fall far from the ...",["The apple doesn’t fall far from the tree","apple tree"]],["What's done is done\n\nDon't ... over spilt ...",["Don't cry over spilt milk","cry milk"]],["Cost a fortune\n\nTo cost an ... and a ...",["To cost an arm and a leg","arm leg"]],["Express the idea that an action or event will never happen\n\nWhen ... can ...",["When pigs can fly","pigs fly"]]];
 
 //Choose the correct answer:
 const grammarQuestions=[["The car is ..... it's neither ..... nor .....\n\nA.at John / mine / yours\nB.John's / mine / yours\nC.John / mine / yours\nD.John's / myself / yourself","B"],["I know Mr smith, ..... young mechanic next door, very well.\n\nA. an\nB. who is\nC. Ø\nD. the","D"],[" ..... are you waiting ..... , Peter?\n\nA. how / for\nB. which / at\nC. who / for","C"],["You should not have behaved like that, ..... ?\n\nA. haven't you\nB. should you\nC. shouldn't you\nD. would you","B"],["Peter .....\n\nA. gave a book Paul.\nB. gave to Paul a book.\nC. Paul gave a book.\nD. gave Paul a book.","D"],["Don't go out without ..... me.\n\nA. to tell\nB. telling\nC. told\nD. tell","B"],["I wanted to phone my friend, but I couldn't get .....\n\nA. in\nB. on\nC. over\nD.through","D"],["Joanna killed ..... because they no longer saw .....\n\nA. him / themselves\nB. herself / each other\nC. herself / themselves\nD. her / them","B"],["She is not here today, she ..... be ill.\n\nA. must\nB. can't\nC. has to\nD. should","A"],["Cartoons make me .....\n\nA. laughing\nB. laugh\nC. to laugh\nD. laughed","B"],["I saw him ..... from the bridge.\n\nA. fall\nB. to fall\nC. fallen\nD.fell","A"],["I am told he is not in ..... but I know he is at .....\n\nA. office / the work\nB. office / work\nC. the office / work\nD. the office / the work","C"],["She went to the pub after .....\n\nA. to work\nB. working\nC. worked\nD. have worked","B"],["They ..... playing all afternoon when I arrived.\n\nA. had been\nB. were\nC. have been\nD. had","A"],["..... he is French, he lives in Japan.\n\nA. in spite of\nB. despite\nC. for\nD. although","D"],["It is much ..... than I expected.\n\nA. best\nB. good\nC. better\nD. the better","C"],["There won't ..... any tickets left.\n\nA. have\nB. be\nC. has\nD been","B"],["..... is a bad habit !\n\nA. Smoke\nB. Smoking\nC. The smoke\nD. The smoking","B"],["I can't stand ..... the housework.\n\nA. me to do\nB. do\nC. doing\nD. that I do","C"],["My friend has never been to America and .....\n\nA. neither have I\nB. I neither have\nC. so have I\nD. nor do I","A"]];
@@ -145,7 +145,7 @@ createQuestion.addEventListener("click",(event)=>{
             readText(questionData.question);
             break;
         case "Expression":
-            question=`What is the expression that means: \n\n“${questionData.question}”`;
+            question=`Complete this expression that means: \n\n${questionData.question}`;
             break;
         case "Grammar":
             question=`Choose the correct answer: \n\n${questionData.question}`;
@@ -169,7 +169,7 @@ const typingSomething=(text)=>{
 
 const checkingAnswer=(fromAnswerZone)=>{
     if(fromAnswerZone&&event.key!=="Enter") return;
-    if((checkCorrespondance(answerZone.value,currentQuestion.answer,currentQuestion.type==="Vocabulary"||currentQuestion.type==="Orthograph")&&currentQuestion.type!=="Bonus")){
+    if((checkCorrespondance(answerZone.value,currentQuestion.type==="Expression"?currentQuestion.answer[1]:currentQuestion.answer,currentQuestion.type==="Vocabulary"||currentQuestion.type==="Orthograph")&&currentQuestion.type!=="Bonus")){
         responseZone.innerText="Correct!"
         responseZone.className="green";
     }
@@ -181,7 +181,7 @@ const checkingAnswer=(fromAnswerZone)=>{
         responseZone.innerText="just below ↓"
         responseZone.className="";
     }
-    correctAnswer.innerText=`“${currentQuestion.answer}”`;
+    correctAnswer.innerText=`“${currentQuestion.type==="Expression"?currentQuestion.answer[0]:currentQuestion.answer}”`;
     checkAnswer.disabled=true;
     answerZone.disabled=true;
     repeatButton.style.display="none";
