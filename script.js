@@ -151,7 +151,7 @@ createQuestion.addEventListener("click",(event)=>{
             question=`Choose the correct answer: \n\n${questionData.question}`;
             break;
         case "Bonus":
-            question=questionData.question;
+            question=`${questionData.question.endsWith(".")?"Answer true or false:\n":""}${questionData.question}`;
             checkAnswer.value="Show the answer!"
             checkAnswer.disabled=false;
             break;
